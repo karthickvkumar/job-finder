@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {NavLink} from 'react-router-dom';
 
 class Header extends Component {
   render() {
@@ -10,7 +11,7 @@ class Header extends Component {
                     <div className="row align-items-center">
                         <div className="col-lg-3 col-md-2">
                             <div className="logo">
-                                <a href="index.html"><img src="assets/img/logo/logo.png" alt="" /></a>
+                                <NavLink to="/"><img src="assets/img/logo/logo.png" alt="" /></NavLink>
                             </div>  
                         </div>
                         <div className="col-lg-9 col-md-9">
@@ -18,18 +19,17 @@ class Header extends Component {
                                 <div className="main-menu">
                                     <nav className="d-none d-lg-block">
                                         <ul id="navigation">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="job_listing.html">Find a Jobs </a></li>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="#">Page</a>
+                                            <li><NavLink to="/" exact activeClassName="active-tab">Home</NavLink></li>
+                                            <li><NavLink to="/find-job" activeClassName="active-tab">Find a Jobs </NavLink></li>
+                                            <li><NavLink to="/about" activeClassName="active-tab">About</NavLink></li>
+                                            <li><a>Page</a>
                                                 <ul className="submenu">
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="single-blog.html">Blog Details</a></li>
-                                                    <li><a href="elements.html">Elements</a></li>
-                                                    <li><a href="job_details.html">job Details</a></li>
+                                                    <li><NavLink to="/blog" activeClassName="active-tab">Blog</NavLink></li>
+                                                    <li><NavLink to="/single-blog" activeClassName="active-tab">Blog Details</NavLink></li>
+                                                    <li><NavLink to="/job-detail" activeClassName="active-tab">job Details</NavLink></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><NavLink to="/contact" activeClassName="active-tab">Contact</NavLink></li>
                                         </ul>
                                     </nav>
                                 </div>          

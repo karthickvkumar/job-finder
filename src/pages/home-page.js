@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import Header from '../components/header';
+import JobInfo from '../components/job-info';
 import Footer from '../components/footer';
 
+import jobList from '../json/home-job-info';
+
 class HomePage extends Component {
+
   render() {
+    let jobProfiles = jobList.map((value, index) => {
+      return(
+        <JobInfo {...value}></JobInfo>
+      )
+    })
     return (
       <div>
         <Header></Header>
@@ -180,82 +190,9 @@ class HomePage extends Component {
               </div>
               <div class="row justify-content-center">
                 <div class="col-xl-10">
-                  <div class="single-job-items mb-30">
-                    <div class="job-items">
-                      <div class="company-img">
-                        <a href="job_details.html"><img src="../img/icon/job-list1.png" alt="" /></a>
-                      </div>
-                      <div class="job-tittle">
-                        <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                        <ul>
-                          <li>Creative Agency</li>
-                          <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                          <li>$3500 - $4000</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="items-link f-right">
-                      <a href="job_details.html">Full Time</a>
-                      <span>7 hours ago</span>
-                    </div>
-                  </div>
-                  <div class="single-job-items mb-30">
-                    <div class="job-items">
-                      <div class="company-img">
-                        <a href="job_details.html"><img src="../img/icon/job-list2.png" alt="" /></a>
-                      </div>
-                      <div class="job-tittle">
-                        <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                        <ul>
-                          <li>Creative Agency</li>
-                          <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                          <li>$3500 - $4000</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="items-link f-right">
-                      <a href="job_details.html">Full Time</a>
-                      <span>7 hours ago</span>
-                    </div>
-                  </div>
-                  <div class="single-job-items mb-30">
-                    <div class="job-items">
-                      <div class="company-img">
-                        <a href="job_details.html"><img src="../img/icon/job-list3.png" alt="" /></a>
-                      </div>
-                      <div class="job-tittle">
-                        <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                        <ul>
-                          <li>Creative Agency</li>
-                          <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                          <li>$3500 - $4000</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="items-link f-right">
-                      <a href="job_details.html">Full Time</a>
-                      <span>7 hours ago</span>
-                    </div>
-                  </div>
-                  <div class="single-job-items mb-30">
-                    <div class="job-items">
-                      <div class="company-img">
-                        <a href="job_details.html"><img src="../img/icon/job-list4.png" alt="" /></a>
-                      </div>
-                      <div class="job-tittle">
-                        <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                        <ul>
-                          <li>Creative Agency</li>
-                          <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                          <li>$3500 - $4000</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="items-link f-right">
-                      <a href="job_details.html">Full Time</a>
-                      <span>7 hours ago</span>
-                    </div>
-                  </div>
+                  
+                  {jobProfiles}
+                  
                 </div>
               </div>
             </div>

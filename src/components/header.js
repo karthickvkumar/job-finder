@@ -11,7 +11,7 @@ class Header extends Component {
                     <div className="row align-items-center">
                         <div className="col-lg-3 col-md-2">
                             <div className="logo">
-                                <NavLink to="/"><img src="assets/img/logo/logo.png" alt="" /></NavLink>
+                                <NavLink to="/"><img src="img/logo/logo.png" alt="" /></NavLink>
                             </div>  
                         </div>
                         <div className="col-lg-9 col-md-9">

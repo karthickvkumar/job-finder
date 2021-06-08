@@ -21,7 +21,8 @@ class HomePage extends Component {
         <main>
           <div class="slider-area ">
             <div class="slider-active">
-              <div class="single-slider slider-height d-flex align-items-center" data-background="../img/hero/h1_hero.jpg">
+              <div class="single-slider slider-height d-flex align-items-center" 
+              style={{"background-image" : "url(img/hero/h1_hero.jpg)"}}>
                 <div class="container">
                   <div class="row">
                     <div class="col-xl-6 col-lg-9 col-md-10">
@@ -165,7 +166,8 @@ class HomePage extends Component {
               </div>
             </div>
           </div>
-          <div class="online-cv cv-bg section-overly pt-90 pb-120" data-background="../img/gallery/cv_bg.jpg">
+          <div class="online-cv cv-bg section-overly pt-90 pb-120" 
+          style={{"background-image" : "url(img/gallery/cv_bg.jpg)"}}>
             <div class="container">
               <div class="row justify-content-center">
                 <div class="col-xl-10">

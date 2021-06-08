@@ -3,12 +3,34 @@ import React, { Component } from 'react';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import JobInfo from '../components/job-info';
+
 import jobList from '../json/home-job-info';
 
 
 class FindJobPage extends Component {
+  
+  constructor(props){
+    super(props);
+    this.state = {
+      jobCategory : '',
+      jobList : jobList,
+      allCategory : jobList
+    }
+  }
+
+  onChangeJobCategory = (event) => {
+    console.log(event.target.value)
+    var filteredCategory = this.state.allCategory.filter((value, index) => {
+      return value.category == event.target.value;
+    });
+    
+    this.setState({
+      jobList : filteredCategory.length == 0 ? this.state.allCategory : filteredCategory
+    });
+  }
+
   render() {
-    let jobProfiles = jobList.map((value, index) => {
+    let jobProfiles = this.state.jobList.map((value, index) => {
       return(
         <JobInfo {...value}></JobInfo>
       )
@@ -19,13 +41,13 @@ class FindJobPage extends Component {
         <Header></Header>
         <main>
 
-          <div class="slider-area ">
-            <div class="single-slider section-overly slider-height2 d-flex align-items-center" 
+          <div className="slider-area ">
+            <div className="single-slider section-overly slider-height2 d-flex align-items-center" 
             style={{"background-image" : "url(img/hero/about.jpg)"}}>
-              <div class="container">
-                <div class="row">
-                  <div class="col-xl-12">
-                    <div class="hero-cap text-center">
+              <div className="container">
+                <div className="row">
+                  <div className="col-xl-12">
+                    <div className="hero-cap text-center">
                       <h2>Get your job</h2>
                     </div>
                   </div>
@@ -33,14 +55,14 @@ class FindJobPage extends Component {
               </div>
             </div>
           </div>
-          <div class="job-listing-area pt-120 pb-120">
-            <div class="container">
-              <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-4">
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="small-section-tittle2 mb-45">
-                        <div class="ion"> <svg
+          <div className="job-listing-area pt-120 pb-120">
+            <div className="container">
+              <div className="row">
+                <div className="col-xl-3 col-lg-3 col-md-4">
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="small-section-tittle2 mb-45">
+                        <div className="ion"> <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20px" height="12px">
                           <path fill-rule="evenodd" fill="rgb(27, 207, 107)"
@@ -51,47 +73,47 @@ class FindJobPage extends Component {
                       </div>
                     </div>
                   </div>
-                  <div class="job-category-listing mb-50">
-                    <div class="single-listing">
-                      <div class="small-section-tittle2">
+                  <div className="job-category-listing mb-50">
+                    <div className="single-listing">
+                      <div className="small-section-tittle2">
                         <h4>Job Category</h4>
                       </div>
-                      <div class="select-job-items2">
-                        <select name="select">
-                          <option value="">All Category</option>
-                          <option value="">Category 1</option>
-                          <option value="">Category 2</option>
-                          <option value="">Category 3</option>
-                          <option value="">Category 4</option>
+                      <div className="select-job-items2">
+                        <select name="select" onChange={this.onChangeJobCategory}>
+                          <option value="all">All Category</option>
+                          <option value="reactjs">React JS</option>
+                          <option value="angular">Angular</option>
+                          <option value=".net">.NET</option>
+                          <option value="python">Python</option>
                         </select>
                       </div>
-                      <div class="select-Categories pt-80 pb-50">
-                        <div class="small-section-tittle2">
+                      <div className="select-Categories pt-80 pb-50">
+                        <div className="small-section-tittle2">
                           <h4>Job Type</h4>
                         </div>
-                        <label class="container">Full Time
+                        <label className="container">Full Time
                                         <input type="checkbox" />
-                          <span class="checkmark"></span>
+                          <span className="checkmark"></span>
                         </label>
-                        <label class="container">Part Time
+                        <label className="container">Part Time
                                         <input type="checkbox" checked="checked active" />
-                          <span class="checkmark"></span>
+                          <span className="checkmark"></span>
                         </label>
-                        <label class="container">Remote
+                        <label className="container">Remote
                                         <input type="checkbox" />
-                          <span class="checkmark"></span>
+                          <span className="checkmark"></span>
                         </label>
-                        <label class="container">Freelance
+                        <label className="container">Freelance
                                         <input type="checkbox" />
-                          <span class="checkmark"></span>
+                          <span className="checkmark"></span>
                         </label>
                       </div>
                     </div>
-                    <div class="single-listing">
-                      <div class="small-section-tittle2">
+                    <div className="single-listing">
+                      <div className="small-section-tittle2">
                         <h4>Job Location</h4>
                       </div>
-                      <div class="select-job-items2">
+                      <div className="select-job-items2">
                         <select name="select">
                           <option value="">Anywhere</option>
                           <option value="">Category 1</option>
@@ -100,75 +122,75 @@ class FindJobPage extends Component {
                           <option value="">Category 4</option>
                         </select>
                       </div>
-                      <div class="select-Categories pt-80 pb-50">
-                        <div class="small-section-tittle2">
+                      <div className="select-Categories pt-80 pb-50">
+                        <div className="small-section-tittle2">
                           <h4>Experience</h4>
                         </div>
-                        <label class="container">1-2 Years
+                        <label className="container">1-2 Years
                                         <input type="checkbox" />
-                          <span class="checkmark"></span>
+                          <span className="checkmark"></span>
                         </label>
-                        <label class="container">2-3 Years
+                        <label className="container">2-3 Years
                                         <input type="checkbox" checked="checked active" />
-                          <span class="checkmark"></span>
+                          <span className="checkmark"></span>
                         </label>
-                        <label class="container">3-6 Years
+                        <label className="container">3-6 Years
                                         <input type="checkbox" />
-                          <span class="checkmark"></span>
+                          <span className="checkmark"></span>
                         </label>
-                        <label class="container">6-more..
+                        <label className="container">6-more..
                                         <input type="checkbox" />
-                          <span class="checkmark"></span>
+                          <span className="checkmark"></span>
                         </label>
                       </div>
                     </div>
-                    <div class="single-listing">
-                      <div class="select-Categories pb-50">
-                        <div class="small-section-tittle2">
+                    <div className="single-listing">
+                      <div className="select-Categories pb-50">
+                        <div className="small-section-tittle2">
                           <h4>Posted Within</h4>
                         </div>
-                        <label class="container">Any
+                        <label className="container">Any
                                         <input type="checkbox" />
-                          <span class="checkmark"></span>
+                          <span className="checkmark"></span>
                         </label>
-                        <label class="container">Today
+                        <label className="container">Today
                                         <input type="checkbox" checked="checked active" />
-                          <span class="checkmark"></span>
+                          <span className="checkmark"></span>
                         </label>
-                        <label class="container">Last 2 days
+                        <label className="container">Last 2 days
                                         <input type="checkbox" />
-                          <span class="checkmark"></span>
+                          <span className="checkmark"></span>
                         </label>
-                        <label class="container">Last 3 days
+                        <label className="container">Last 3 days
                                         <input type="checkbox" />
-                          <span class="checkmark"></span>
+                          <span className="checkmark"></span>
                         </label>
-                        <label class="container">Last 5 days
+                        <label className="container">Last 5 days
                                         <input type="checkbox" />
-                          <span class="checkmark"></span>
+                          <span className="checkmark"></span>
                         </label>
-                        <label class="container">Last 10 days
+                        <label className="container">Last 10 days
                                         <input type="checkbox" />
-                          <span class="checkmark"></span>
+                          <span className="checkmark"></span>
                         </label>
                       </div>
                     </div>
-                    <div class="single-listing">
-                      <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
-                        <div class="small-section-tittle2">
+                    <div className="single-listing">
+                      <aside className="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
+                        <div className="small-section-tittle2">
                           <h4>Filter Jobs</h4>
                         </div>
-                        <div class="widgets_inner">
-                          <div class="range_item">
-                            <input type="text" class="js-range-slider" value="" />
-                            <div class="d-flex align-items-center">
-                              <div class="price_text">
+                        <div className="widgets_inner">
+                          <div className="range_item">
+                            <input type="text" className="js-range-slider" value="" />
+                            <div className="d-flex align-items-center">
+                              <div className="price_text">
                                 <p>Price :</p>
                               </div>
-                              <div class="price_value d-flex justify-content-center">
-                                <input type="text" class="js-input-from" id="amount" readonly />
+                              <div className="price_value d-flex justify-content-center">
+                                <input type="text" className="js-input-from" id="amount" readonly />
                                 <span>to</span>
-                                <input type="text" class="js-input-to" id="amount" readonly />
+                                <input type="text" className="js-input-to" id="amount" readonly />
                               </div>
                             </div>
                           </div>
@@ -177,24 +199,24 @@ class FindJobPage extends Component {
                     </div>
                   </div>
                 </div>
-                <div class="col-xl-9 col-lg-9 col-md-8">
+                <div className="col-xl-9 col-lg-9 col-md-8">
                   {/* Job Information  */}
                   {jobProfiles}
                 </div>
               </div>
             </div>
           </div>
-          <div class="pagination-area pb-115 text-center">
-            <div class="container">
-              <div class="row">
-                <div class="col-xl-12">
-                  <div class="single-wrap d-flex justify-content-center">
+          <div className="pagination-area pb-115 text-center">
+            <div className="container">
+              <div className="row">
+                <div className="col-xl-12">
+                  <div className="single-wrap d-flex justify-content-center">
                     <nav aria-label="Page navigation example">
-                      <ul class="pagination justify-content-start">
-                        <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                        <li class="page-item"><a class="page-link" href="#">02</a></li>
-                        <li class="page-item"><a class="page-link" href="#">03</a></li>
-                        <li class="page-item"><a class="page-link" href="#"><span class="ti-angle-right"></span></a></li>
+                      <ul className="pagination justify-content-start">
+                        <li className="page-item active"><a className="page-link" href="#">01</a></li>
+                        <li className="page-item"><a className="page-link" href="#">02</a></li>
+                        <li className="page-item"><a className="page-link" href="#">03</a></li>
+                        <li className="page-item"><a className="page-link" href="#"><span class="ti-angle-right"></span></a></li>
                       </ul>
                     </nav>
                   </div>

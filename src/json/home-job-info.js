@@ -6,7 +6,8 @@ export default [
       "Location" : "Athens, Greece",
       "min_salary" : "3500",
       "max_salary" : "4000",
-      "company_logo" : "/img/icon/job-list1.png"
+      "company_logo" : "/img/icon/job-list1.png",
+      "type" : "Full Time"
     },
     {
       "job_title" : ".Net Programming",
@@ -15,7 +16,8 @@ export default [
       "Location" : "Athens, Greece",
       "min_salary" : "3500",
       "max_salary" : "4000",
-      "company_logo" : "/img/icon/job-list3.png"
+      "company_logo" : "/img/icon/job-list3.png",
+      "type" : "Part Time"
     },
     {
       "job_title" : "AI and Machine Learning Engineer",
@@ -24,7 +26,8 @@ export default [
       "Location" : "Athens, Greece",
       "min_salary" : "3500",
       "max_salary" : "4000",
-      "company_logo" : "/img/icon/job-list4.png"
+      "company_logo" : "/img/icon/job-list4.png",
+      "type" : "Freelance"
     },
     {
       "job_title" : "React JS Developer",
@@ -33,7 +36,8 @@ export default [
       "Location" : "Athens, Greece",
       "min_salary" : "3500",
       "max_salary" : "4000",
-      "company_logo" : "/img/icon/job-list1.png"
+      "company_logo" : "/img/icon/job-list1.png",
+      "type" : "Remote"
     },
     {
       "job_title" : "Angular Developer",
@@ -42,7 +46,8 @@ export default [
       "Location" : "Athens, Greece",
       "min_salary" : "3500",
       "max_salary" : "4000",
-      "company_logo" : "/img/icon/job-list2.png"
+      "company_logo" : "/img/icon/job-list2.png",
+      "type" : "Full Time"
     },
     {
       "job_title" : ".Net Programming",
@@ -51,7 +56,8 @@ export default [
       "Location" : "Athens, Greece",
       "min_salary" : "3500",
       "max_salary" : "4000",
-      "company_logo" : "/img/icon/job-list3.png"
+      "company_logo" : "/img/icon/job-list3.png",
+      "type" : "Part Time"
     },
     {
       "job_title" : "AI and Machine Learning Engineer",
@@ -60,6 +66,7 @@ export default [
       "Location" : "Athens, Greece",
       "min_salary" : "3500",
       "max_salary" : "4000",
-      "company_logo" : "/img/icon/job-list4.png"
+      "company_logo" : "/img/icon/job-list4.png",
+      "type" : "Remote"
     },
 ]

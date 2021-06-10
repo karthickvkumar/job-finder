@@ -18,7 +18,7 @@ class JobInfo extends Component {
           </div>
         </div>
         <div class="items-link f-right">
-          <a href="job_details.html">Full Time</a>
+          <a href="job_details.html">{this.props.type}</a>
           <span>7 hours ago</span>
         </div>
       </div>

@@ -14,7 +14,8 @@ class FindJobPage extends Component {
     this.state = {
       jobCategory : '',
       jobList : jobList,
-      allCategory : jobList
+      allCategory : jobList,
+      jobType : []
     }
   }
 
@@ -28,6 +29,32 @@ class FindJobPage extends Component {
       jobList : filteredCategory.length == 0 ? this.state.allCategory : filteredCategory
     });
   }
+
+  onChangeJobType = (event) => {
+    let filterdJobType = [];
+
+    if(event.target.checked){
+      this.state.jobType.push(event.target.value)
+    }
+    else{
+
+      let index = this.state.jobType.findIndex((value, index) => {
+        return value === event.target.value
+      });
+      this.state.jobType.splice(index, 1);
+    }
+
+    this.state.jobType.forEach((jobType, index) => {
+      var filteredCategory = this.state.allCategory.filter((value, index) => {
+        return value.type == jobType;
+      });
+      filterdJobType.push(...filteredCategory)
+    }) 
+
+    this.setState({
+      jobList : filterdJobType.length == 0 ? this.state.allCategory : filterdJobType
+    });
+  };
 
   render() {
     let jobProfiles = this.state.jobList.map((value, index) => {
@@ -92,19 +119,19 @@ class FindJobPage extends Component {
                           <h4>Job Type</h4>
                         </div>
                         <label className="container">Full Time
-                                        <input type="checkbox" />
+                                        <input type="checkbox" onChange={this.onChangeJobType} value="Full Time"/>
                           <span className="checkmark"></span>
                         </label>
                         <label className="container">Part Time
-                                        <input type="checkbox" checked="checked active" />
+                                        <input type="checkbox" onChange={this.onChangeJobType} value="Part Time"/>
                           <span className="checkmark"></span>
                         </label>
                         <label className="container">Remote
-                                        <input type="checkbox" />
+                                        <input type="checkbox" onChange={this.onChangeJobType} value="Remote"/>
                           <span className="checkmark"></span>
                         </label>
                         <label className="container">Freelance
-                                        <input type="checkbox" />
+                                        <input type="checkbox" onChange={this.onChangeJobType} value="Freelance"/>
                           <span className="checkmark"></span>
                         </label>
                       </div>

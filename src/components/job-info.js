@@ -12,7 +12,7 @@ class JobInfo extends Component {
             <a href="job_details.html"><h4>{this.props.job_title}</h4></a>
             <ul>
               <li>{this.props.company_name}</li>
-              <li><i class="fas fa-map-marker-alt"></i>{this.props.Location}</li>
+              <li><i class="fas fa-map-marker-alt"></i>{this.props.location}</li>
               <li>{this.props.min_salary} - {this.props.max_salary}</li>
             </ul>
           </div>

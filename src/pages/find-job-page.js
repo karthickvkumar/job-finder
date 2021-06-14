@@ -5,7 +5,8 @@ import Footer from '../components/footer';
 import JobInfo from '../components/job-info';
 
 import jobList from '../json/home-job-info';
-
+import jobCategory from '../json/job-category';
+import jobLocation from '../json/job-location';
 
 class FindJobPage extends Component {
   
@@ -15,7 +16,8 @@ class FindJobPage extends Component {
       jobCategory : '',
       jobList : jobList,
       allCategory : jobList,
-      jobType : []
+      jobType : [],
+      jobExp : [],
     }
   }
 
@@ -56,12 +58,45 @@ class FindJobPage extends Component {
     });
   };
 
+  
+  onChangeJobLocation = (event) => {
+    console.log(event.target.value)
+    var filteredCategory = this.state.allCategory.filter((value, index) => {
+      return value.location == event.target.value;
+    });
+    
+    this.setState({
+      jobList : event.target.value == "all" ? this.state.allCategory : filteredCategory
+    });
+  }
+  
+  onChangeExperience = (event) => {
+    console.log(event.target.value)
+
+    let expRange = event.target.value.split('-');
+    this.state.jobExp = this.state.jobExp.concat(expRange);
+
+    console.log(this.state.jobExp)
+  }
+
   render() {
     let jobProfiles = this.state.jobList.map((value, index) => {
       return(
-        <JobInfo {...value}></JobInfo>
+        <JobInfo {...value} key={index}></JobInfo>
       )
-    })
+    });
+
+    let category = jobCategory.map((value, index) => {
+      return(
+        <option value={value.category} key={index}>{value.name}</option>
+      )
+    });
+
+    let location = jobLocation.map((value, index) => {
+      return(
+        <option value={value.name} key={index}>{value.name}</option>
+      )
+    });
 
     return (
       <div>
@@ -108,10 +143,11 @@ class FindJobPage extends Component {
                       <div className="select-job-items2">
                         <select name="select" onChange={this.onChangeJobCategory}>
                           <option value="all">All Category</option>
-                          <option value="reactjs">React JS</option>
+                          {category}
+                          {/* <option value="reactjs">React JS</option>
                           <option value="angular">Angular</option>
                           <option value=".net">.NET</option>
-                          <option value="python">Python</option>
+                          <option value="python">Python</option> */}
                         </select>
                       </div>
                       <div className="select-Categories pt-80 pb-50">
@@ -141,12 +177,9 @@ class FindJobPage extends Component {
                         <h4>Job Location</h4>
                       </div>
                       <div className="select-job-items2">
-                        <select name="select">
-                          <option value="">Anywhere</option>
-                          <option value="">Category 1</option>
-                          <option value="">Category 2</option>
-                          <option value="">Category 3</option>
-                          <option value="">Category 4</option>
+                        <select name="select" onChange={this.onChangeJobLocation}>
+                          <option value="all">Anywhere</option>
+                          {location}
                         </select>
                       </div>
                       <div className="select-Categories pt-80 pb-50">
@@ -154,19 +187,19 @@ class FindJobPage extends Component {
                           <h4>Experience</h4>
                         </div>
                         <label className="container">1-2 Years
-                                        <input type="checkbox" />
+                                        <input type="checkbox" value="1-2" onChange={this.onChangeExperience}/>
                           <span className="checkmark"></span>
                         </label>
                         <label className="container">2-3 Years
-                                        <input type="checkbox" checked="checked active" />
+                                        <input type="checkbox" value="2-3" onChange={this.onChangeExperience}/>
                           <span className="checkmark"></span>
                         </label>
                         <label className="container">3-6 Years
-                                        <input type="checkbox" />
+                                        <input type="checkbox" value="3-6"onChange={this.onChangeExperience}/>
                           <span className="checkmark"></span>
                         </label>
                         <label className="container">6-more..
-                                        <input type="checkbox" />
+                                        <input type="checkbox" value="6" onChange={this.onChangeExperience}/>
                           <span className="checkmark"></span>
                         </label>
                       </div>
@@ -228,7 +261,7 @@ class FindJobPage extends Component {
                 </div>
                 <div className="col-xl-9 col-lg-9 col-md-8">
                   {/* Job Information  */}
-                  {jobProfiles}
+                  {jobProfiles.length !== 0 ? jobProfiles : <h4>No such data available.</h4> }
                 </div>
               </div>
             </div>

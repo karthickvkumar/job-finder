@@ -18,6 +18,8 @@ class FindJobPage extends Component {
       allCategory : jobList,
       jobType : [],
       jobExp : [],
+      jobDuration : [],
+      salarySelection : 10000
     }
   }
 
@@ -73,10 +75,102 @@ class FindJobPage extends Component {
   onChangeExperience = (event) => {
     console.log(event.target.value)
 
-    let expRange = event.target.value.split('-');
-    this.state.jobExp = this.state.jobExp.concat(expRange);
+    
+    if(event.target.checked){
+      this.state.jobExp.push(event.target.value);
+    }else{
+      let index = this.state.jobExp.findIndex((value, index) => {
+        return value == event.target.value;
+      });
+      this.state.jobExp.splice(index, 1);
+    }
+  
+    let years = []; 
 
-    console.log(this.state.jobExp)
+    this.state.jobExp.forEach((value, index) => {
+      let yearString = value.split('-');
+
+      yearString.forEach((value, index) => {
+        years.push(parseInt(value))
+      });
+    });
+
+    years = [...new Set(years)];
+
+    var filteredExp = this.state.allCategory.filter((value, index) => {
+      var jobYear = value.experience.split('-');
+      var canFilter = false;
+
+      years.forEach((year, index) => {
+        jobYear.forEach((value, index) => {
+            if(year == parseInt(value)){
+              canFilter = true;
+              return;
+            }
+        });
+      });
+
+      return canFilter;
+    }); 
+
+    this.setState({
+      jobList : filteredExp
+    })
+  }
+
+  jobPostedWithin = (event) => {
+    
+    if(event.target.checked){
+      this.state.jobDuration.push(event.target.value);
+    }else{
+      let index = this.state.jobDuration.findIndex((value, index) => {
+        return value == event.target.value;
+      });
+      this.state.jobDuration.splice(index, 1);
+    }
+
+    let date = new Date();
+    let currentDay = date.getDate();
+    let filteredDuration = [];
+
+    this.state.jobDuration.forEach((date, index) => {
+        var dateNumber = date !== 'any' ? parseInt(date) : 'any';
+        if(dateNumber !== 'any'){
+          let jobDetail = this.state.allCategory.filter((job, index) => {
+            let jobPostedDay = parseInt(job.duration.split('-')[0]);
+            return jobPostedDay === (currentDay - dateNumber);
+          });
+
+          filteredDuration = filteredDuration.concat(jobDetail);
+        }
+        else{
+          filteredDuration = filteredDuration.concat(this.state.allCategory);
+        }
+    });
+
+    this.setState({
+      jobList : filteredDuration
+    })
+  }
+
+  salaryRange = (event) => {
+    console.log(event.target.value)
+    this.setState({
+      salarySelection : event.target.value
+    });
+
+    let filteredSalary = this.state.allCategory.filter((job, index) => {
+      if(parseInt(job.min_salary) <= parseInt(event.target.value) && parseInt(job.max_salary) >= parseInt(event.target.value)){
+        return true;
+      } 
+      else{
+        return false;
+      }
+    });
+
+    this.setState({
+      jobList : filteredSalary
+    })
   }
 
   render() {
@@ -210,27 +304,27 @@ class FindJobPage extends Component {
                           <h4>Posted Within</h4>
                         </div>
                         <label className="container">Any
-                                        <input type="checkbox" />
+                                        <input type="checkbox" value="any" onChange={this.jobPostedWithin}/>
                           <span className="checkmark"></span>
                         </label>
                         <label className="container">Today
-                                        <input type="checkbox" checked="checked active" />
+                                        <input type="checkbox" value="0" onChange={this.jobPostedWithin}/>
                           <span className="checkmark"></span>
                         </label>
                         <label className="container">Last 2 days
-                                        <input type="checkbox" />
+                                        <input type="checkbox" value="2" onChange={this.jobPostedWithin}/>
                           <span className="checkmark"></span>
                         </label>
                         <label className="container">Last 3 days
-                                        <input type="checkbox" />
+                                        <input type="checkbox" value="3" onChange={this.jobPostedWithin}/>
                           <span className="checkmark"></span>
                         </label>
                         <label className="container">Last 5 days
-                                        <input type="checkbox" />
+                                        <input type="checkbox" value="5" onChange={this.jobPostedWithin}/>
                           <span className="checkmark"></span>
                         </label>
                         <label className="container">Last 10 days
-                                        <input type="checkbox" />
+                                        <input type="checkbox" value="10" onChange={this.jobPostedWithin}/>
                           <span className="checkmark"></span>
                         </label>
                       </div>
@@ -241,17 +335,17 @@ class FindJobPage extends Component {
                           <h4>Filter Jobs</h4>
                         </div>
                         <div className="widgets_inner">
+                          <div className="salary-range">
+                            <span>Min: 10000$</span>
+                            <span>Max: 40000$</span>
+                          </div>
                           <div className="range_item">
-                            <input type="text" className="js-range-slider" value="" />
+                            <input type="range" min="10000" max="40000" step="100" onChange={this.salaryRange}/>
                             <div className="d-flex align-items-center">
                               <div className="price_text">
-                                <p>Price :</p>
+                                <p>Price : {this.state.salarySelection + ' $'}</p>
                               </div>
-                              <div className="price_value d-flex justify-content-center">
-                                <input type="text" className="js-input-from" id="amount" readonly />
-                                <span>to</span>
-                                <input type="text" className="js-input-to" id="amount" readonly />
-                              </div>
+                             
                             </div>
                           </div>
                         </div>

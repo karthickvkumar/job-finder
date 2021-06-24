@@ -2,9 +2,66 @@ import React, { Component } from 'react';
 
 import Header from '../components/header';
 import Footer from '../components/footer';
+import Comment from '../components/comment';
 
 class SingleBlogPage extends Component {
-  render() {
+  
+   constructor(props){
+      super(props);
+      this.state = {
+         comment : {
+            message : '',
+            name: '',
+            email: '',
+            contact: '',
+            date_time : ''
+         },
+         commentList : []
+      }
+   }
+
+   updateComment = (event) => {
+      let value = {...this.state.comment, [event.target.name] : event.target.value}
+      this.setState({
+         comment : value
+      })
+   }
+
+   addComment(){
+      let date = new Date();
+      const monthNames = ["January", "February", "March", "April", "May", "June",
+         "July", "August", "September", "October", "November", "December"
+      ];
+      const hours = date.getHours() % 12;
+      const ampm = hours >= 12 ? 'pm' : 'am';
+      let currentTime = monthNames[date.getMonth()] + ' ' + date.getDate() + ' ' + date.getFullYear() + ' at ' + 
+            hours + ':' + date.getMinutes() + ' ' + ampm
+      
+      this.state.commentList.push({...this.state.comment, date_time : currentTime});
+      this.setState({
+         commentList : this.state.commentList
+      })
+      
+      let clearComment = {
+         message : '',
+         name: '',
+         email: '',
+         contact: '',
+         date_time : ''
+      };
+
+      this.setState({
+         comment : clearComment
+      })
+   }
+
+   render() {
+   
+   let commentList = this.state.commentList.map((value, index) => {
+      return(
+         <Comment {...value} key={index}></Comment>
+      )
+   })
     return (
       <div>
         <Header></Header>
@@ -139,116 +196,41 @@ class SingleBlogPage extends Component {
                   </div>
                </div>
                <div class="comments-area">
-                  <h4>05 Comments</h4>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                              <img src="img/comment/comment_1.png" alt="" />
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                              <img src="img/comment/comment_2.png" alt="" />
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                              <img src="img/comment/comment_3.png" alt="" />
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                  <h4>{this.state.commentList.length} Comments</h4>
+                  
+                  {commentList}
+                 
                </div>
                <div class="comment-form">
                   <h4>Leave a Reply</h4>
-                  <form class="form-contact comment_form" action="#" id="commentForm">
+                  {/* <form class="form-contact comment_form" action="#" id="commentForm"> */}
                      <div class="row">
                         <div class="col-12">
                            <div class="form-group">
-                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
-                                 placeholder="Write Comment"></textarea>
+                              <textarea class="form-control w-100" name="message" id="comment" cols="30" rows="9"
+                                 placeholder="Write Comment" value={this.state.comment.message} onChange={this.updateComment}></textarea>
                            </div>
                         </div>
                         <div class="col-sm-6">
                            <div class="form-group">
-                              <input class="form-control" name="name" id="name" type="text" placeholder="Name" />
+                              <input class="form-control" name="name" id="name" type="text" placeholder="Name" value={this.state.comment.name} onChange={this.updateComment}/>
                            </div>
                         </div>
                         <div class="col-sm-6">
                            <div class="form-group">
-                              <input class="form-control" name="email" id="email" type="email" placeholder="Email" />
+                              <input class="form-control" name="email" id="email" type="email" placeholder="Email" value={this.state.comment.email} onChange={this.updateComment}/>
                            </div>
                         </div>
                         <div class="col-12">
                            <div class="form-group">
-                              <input class="form-control" name="website" id="website" type="text" placeholder="Website" />
+                              <input class="form-control" name="contact" id="website" type="text" placeholder="Contact" value={this.state.comment.contact} onChange={this.updateComment}/>
                            </div>
                         </div>
                      </div>
                      <div class="form-group">
-                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+                        <button class="button button-contactForm btn_1 boxed-btn" onClick={() => this.addComment()}>Send Message</button>
                      </div>
-                  </form>
+                  {/* </form> */}
                </div>
             </div>
             <div class="col-lg-4">

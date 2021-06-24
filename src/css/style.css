@@ -6282,3 +6282,13 @@ form.search-box .search-form a {
 .active-tab{
     color: #fb246a !important;
 }
+
+.center-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label-width{
+    width: 160px;
+}

@@ -4,76 +4,83 @@ export default [
       "category": "reactjs",
       "company_name" : "Creative Agency",
       "location" : "Chennai",
-      "min_salary" : "3500",
-      "max_salary" : "4000",
+      "min_salary" : "25000",
+      "max_salary" : "30000",
       "experience" : "1-2",
       "company_logo" : "/img/icon/job-list1.png",
-      "type" : "Full Time"
+      "type" : "Full Time",
+      "duration": "18-06-2021"
     },
     {
       "job_title" : ".Net Programming",
       "category": ".net",
       "company_name" : "Creative Agency",
       "location" : "Delhi",
-      "min_salary" : "3500",
-      "max_salary" : "4000",
+      "min_salary" : "15000",
+      "max_salary" : "18000",
       "experience" : "2-5",
       "company_logo" : "/img/icon/job-list3.png",
-      "type" : "Part Time"
+      "type" : "Part Time",
+      "duration": "17-06-2021"
     },
     {
       "job_title" : "AI and Machine Learning Engineer",
       "category": "python",
       "company_name" : "Creative Agency",
       "location" : "Mumbai",
-      "min_salary" : "3500",
-      "max_salary" : "4000",
+      "min_salary" : "30000",
+      "max_salary" : "40000",
       "company_logo" : "/img/icon/job-list4.png",
       "experience" : "6-12",
-      "type" : "Freelance"
+      "type" : "Freelance",
+      "duration": "15-06-2021"
     },
     {
       "job_title" : "React JS Developer",
       "category": "reactjs",
       "company_name" : "Creative Agency",
       "location" : "Kochin",
-      "min_salary" : "3500",
-      "max_salary" : "4000",
+      "min_salary" : "10000",
+      "max_salary" : "12000",
       "experience" : "2-6",
       "company_logo" : "/img/icon/job-list1.png",
-      "type" : "Remote"
+      "type" : "Remote",
+      "duration": "16-06-2021"
     },
     {
       "job_title" : "Angular Developer",
       "category": "angular",
       "company_name" : "Creative Agency",
       "location" : "Chennai",
-      "min_salary" : "3500",
-      "max_salary" : "4000",
+      "min_salary" : "20000",
+      "max_salary" : "25000",
       "experience" : "1-2",
       "company_logo" : "/img/icon/job-list2.png",
-      "type" : "Full Time"
+      "type" : "Full Time",
+      "duration": "12-06-2021"
     },
     {
       "job_title" : ".Net Programming",
       "category": ".net",
       "company_name" : "Creative Agency",
       "location" : "Mumbai",
-      "min_salary" : "3500",
-      "max_salary" : "4000",
+      "min_salary" : "35000",
+      "max_salary" : "40000",
       "experience" : "4-8",
       "company_logo" : "/img/icon/job-list3.png",
-      "type" : "Part Time"
+      "type" : "Part Time",
+      "duration": "10-06-2021"
     },
     {
       "job_title" : "AI and Machine Learning Engineer",
       "category": "python",
       "company_name" : "Creative Agency",
       "location" : "Delhi",
-      "min_salary" : "3500",
-      "max_salary" : "4000",
+      "min_salary" : "25000",
+      "max_salary" : "35000",
       "experience" : "1-4",
       "company_logo" : "/img/icon/job-list4.png",
-      "type" : "Remote"
+      "type" : "Remote",
+      "duration": "18-06-2021"
     },
 ]

@@ -8,6 +8,9 @@ import ContactPage from './pages/contact-page';
 import FindJobPage from './pages/find-job-page';
 import JobDetail from './pages/job-detail';
 import SingleBlogPage from './pages/single-blog-page';
+import RegisterPage from './pages/register-page';
+import LoginPage from './pages/login-page';
+import NotFoundPage from './pages/not-found-page';
 
 import './css/bootstrap.min.css';
 // import './css/owl.carousel.min.css';
@@ -35,6 +38,10 @@ class App extends Component {
           <Route path="/find-job" component={FindJobPage}></Route>
           <Route path="/job-detail" component={JobDetail}></Route>
           <Route path="/single-blog" component={SingleBlogPage}></Route>
+          <Route path="/login" component={LoginPage}></Route>
+          <Route path="/register" component={RegisterPage}></Route>
+
+          <Route component={NotFoundPage}></Route>
         </Switch>
       </BrowserRouter>
     );

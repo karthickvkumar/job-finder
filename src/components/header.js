@@ -34,8 +34,8 @@ class Header extends Component {
                                     </nav>
                                 </div>          
                                 <div className="header-btn d-none f-right d-lg-block">
-                                    <a href="#" className="btn head-btn1">Register</a>
-                                    <a href="#" className="btn head-btn2">Login</a>
+                                    <NavLink to="/register" className="btn head-btn1">Register</NavLink>
+                                    <NavLink to="/login" className="btn head-btn2">Login</NavLink>
                                 </div>
                             </div>
                         </div>
